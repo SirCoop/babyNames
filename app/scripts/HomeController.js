@@ -18,7 +18,7 @@ app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constant
             });
         });
 
-        //  create clone of data array
+        //  create clone of data for smart-grid
         $scope.nameCollection = [].concat($scope.namesArr);
 
         //  Q: how do I remove tplUrl from tpl
