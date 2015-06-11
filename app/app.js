@@ -9,7 +9,7 @@ var app = angular.module('babyNames', [
     'ui.router',
     'ngCookies',
     'angularSpinner',
-    'smart-table',
+    'smart-table'
     //'ui.grid'
 ])
 .config(['$stateProvider', '$httpProvider', '$urlRouterProvider', function ($stateProvider, $httpProvider, $urlRouterProvider) {
