@@ -398,7 +398,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434061519365</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="First Push to remote...sans big data">
+      <created>1434061661343</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1434061661343</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -442,7 +448,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="test" />
     <MESSAGE value="Second Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second Commit" />
+    <MESSAGE value="First Push to remote...sans big data" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Push to remote...sans big data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
