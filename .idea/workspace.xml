@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="89c26188-946b-4aa8-a291-6abafbe5aa3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="89c26188-946b-4aa8-a291-6abafbe5aa3b" name="Default" comment="" />
     <ignored path="babyNames.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="app/_resources/" />
@@ -428,7 +426,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434062070988</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="github">
+      <created>1434062154639</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1434062154639</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
