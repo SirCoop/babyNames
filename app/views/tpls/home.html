@@ -1,0 +1,67 @@
+
+<div class="row">
+    <div class="col-xs-8 ">
+
+        <!--make a custom directive to supply an alphabet character along with service call to get names with that letter-->
+        <!--this require redesign of my data service. now i need to loop through all the babyNames.json objects and spit out a file-->
+        <!--containing only names starting with each letter of the alphabet-->
+
+        <span alphabet-name></span>
+    </div>
+</div>
+
+
+
+<div>{{totalNamesForCurrentYear}} unique names given in {{namesArr[0].year}}</div>
+
+<div class="row">
+    <div class="col-xs-8 ">
+        <table st-table="nameCollection" st-safe-src="namesArr" class="table table-striped">
+            <thead>
+                <tr>
+                    <th st-sort="year"><span class="sortableTableHeader">Year</span></th>
+                    <th st-sort="name"><span class="sortableTableHeader">Name</span></th>
+                    <th st-sort="gender"><span class="sortableTableHeader">Gender</span></th>
+                    <th st-sort="quantity"><span class="sortableTableHeader">Frequency at birth</span></th>
+                </tr>
+                <tr>
+                    <!--<input type="text" class="form-control" id="nameSearch" ng-model="nameSearch">-->
+                    <th colspan="5">
+                        <input st-search="" class="form-control" placeholder="Search ..." type="text"/>
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="child in nameCollection">
+                    <td st-ratio="20">{{child.year}}</td>
+                    <td st-ratio="20">{{child.name}}</td>
+                    <td st-ratio="20">{{child.gender}}</td>
+                    <td st-ratio="20">{{child.quantity | number:fractionSize}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <!--<td colspan="5" class="text-center" st-items-by-page="itemsPerPage" st-pagination="" st-displayed-pages="numPages">-->
+                    <!--</td>-->
+
+                    <td colspan="5" class="text-center">
+                        <div st-items-by-page="itemsPerPage" st-pagination="" st-template="views/tpls/pagination.html"></div>
+                    </td>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<!--<nav>-->
+    <!--<ul class="pagination">-->
+        <!--<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>-->
+        <!--<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>-->
+
+    <!--</ul>-->
+<!--</nav>-->
+
+

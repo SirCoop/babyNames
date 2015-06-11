@@ -1,0 +1,33 @@
+.select-page {
+    width: 50px;
+    text-align: center;
+}
+.pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+}
+.st-sort-ascent:before {
+    content: '\25B2';
+}
+
+.st-sort-descent:before {
+    content: '\25BC';
+}
+.sortableTableHeader {
+    cursor: pointer;
+}
+.loader .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: #000;
+    opacity: .25;
+    top: 0;
+    left: 0;
+}
+
+.myGrid {
+    width: 500px;
+    height: 250px;
+}

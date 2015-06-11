@@ -1,0 +1,21 @@
+<!-- NAVIGATION -->
+<nav class="navbar navbar" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="#">Welcome to Baby Names!</a>
+        <div class="navbar-brand">{{totalYears}} years worth of names</div>
+    </div>
+    <ul class="nav navbar-nav">
+        <!--<li><a ui-sref="home">Home</a></li>-->
+        <!--<li><a ui-sref="about">About</a></li>-->
+    </ul>
+</nav>
+
+<!--CONTENT-->
+<div ui-view></div>
+
+<!--FOOTER-->
+<!--<footer>baby names footer</footer>-->
+<!--<div class="loader" ng-show="showLoader">-->
+<!--<div class="overlay" ng-show="showLoader"></div>-->
+    <span us-spinner spinner-key="loading-names"></span>
+<!--</div>-->
