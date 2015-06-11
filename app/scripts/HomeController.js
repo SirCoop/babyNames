@@ -32,7 +32,7 @@ app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constant
             usSpinnerService.stop('loading-names');
         }, 100);
 
-
+    //  test
 
     });
 
