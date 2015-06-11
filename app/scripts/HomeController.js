@@ -27,7 +27,7 @@ app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constant
         $scope.itemsPerPage = 18;
 
 
-
+        //  show loader
         $timeout(function() {
             //$rootScope.showLoader--;
             usSpinnerService.stop('loading-names');
