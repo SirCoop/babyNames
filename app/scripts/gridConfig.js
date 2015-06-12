@@ -13,6 +13,5 @@ app.value('gridConfig',
             { field: 'gender', displayName: 'Gender', width: "**" },
             { field: 'quantity', displayName: 'Babies given name', width: "**"}
         ]
-
     }
 );

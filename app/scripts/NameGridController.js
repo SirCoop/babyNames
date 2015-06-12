@@ -6,15 +6,12 @@
 app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'constants', 'gridConfig', function ($rootScope, $scope, NameFactory, constants, gridConfig) {
 
     //NameFactory.getNames(constants.namesDirectory).success(function (data) {
-        //console.log('data ', data[0].names);
         $scope.nameGridOptions = gridConfig;
-        console.log('grid options ', $scope.nameGridOptions);
-        console.log('data in nameCtrl ', $scope.nameData[0]);
+        //console.log('grid options ', $scope.nameGridOptions);
+        //console.log('data in nameCtrl ', $scope.nameData[0]);
         $scope.nameGridOptions.data = $scope.nameData[0].names;
-        //
-        //$scope.totalNamesForCurrentYear = $scope.nameGridOptions.data.length;
-        //$scope.year = $scope.nameGridOptions.data[0].year;
-
+        $scope.totalNamesForCurrentYear = $scope.nameGridOptions.data.length;
+        $scope.year = $scope.nameGridOptions.data[0].year;
 
     //    var arr = [data[0]];
     //    $rootScope.totalYears = data.length;
