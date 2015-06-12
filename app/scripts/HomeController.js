@@ -7,7 +7,6 @@ app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constant
 
     //console.log('data ', nameData);
     $scope.nameData = nameData;
-
 }]);
 
 
