@@ -12,4 +12,5 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
         $scope.totalNamesForCurrentYear = $scope.nameGridOptions.data.length;
         $scope.year = $scope.nameGridOptions.data[0].year;
 
+
 }]);
