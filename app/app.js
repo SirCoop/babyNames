@@ -9,7 +9,6 @@ var app = angular.module('babyNames', [
     'ui.router',
     'ngCookies',
     'angularSpinner',
-    'smart-table',
     'ui.grid',
     'ui.grid.pagination'
 ])

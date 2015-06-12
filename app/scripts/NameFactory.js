@@ -4,10 +4,6 @@
 'use strict';
 
 app.factory('NameFactory', ['$http', '$rootScope', function ($http, $rootScope) {
-    //var routeAllNames = constants.namesDirectory;
-    //console.log('route ', routeAllNames);
-
-
     return {
         getNames: function (dir) {
             return $http.get(dir).then(function (res) {
