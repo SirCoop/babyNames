@@ -9,8 +9,9 @@ var app = angular.module('babyNames', [
     'ui.router',
     'ngCookies',
     'angularSpinner',
-    'smart-table'
-    //'ui.grid'
+    'smart-table',
+    'ui.grid',
+    'ui.grid.pagination'
 ])
 .config(['$stateProvider', '$httpProvider', '$urlRouterProvider', function ($stateProvider, $httpProvider, $urlRouterProvider) {
     'use strict';

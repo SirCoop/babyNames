@@ -3,7 +3,7 @@
  */
 'use strict';
 
-app.factory('NameFactory', ['$http', function ($http) {
+app.factory('NameFactory', ['$http', '$rootScope', function ($http, $rootScope) {
     //var routeAllNames = constants.namesDirectory;
     //console.log('route ', routeAllNames);
 
