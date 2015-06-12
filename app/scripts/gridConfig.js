@@ -6,7 +6,7 @@
 app.value('gridConfig',
     {
         paginationPageSizes: [250, 500, 1000],
-        paginationPageSize: 200,
+        paginationPageSize: 250,
         columnDefs: [
             { field: 'year', displayName: 'BirthYear', width: "*", resizable: false},
             { field: 'name', displayName: 'First Name', width: "20%" },
