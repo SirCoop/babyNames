@@ -3,7 +3,13 @@
  */
 'use strict';
 
-app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constants', function ($rootScope, $scope, NameFactory, constants) {
+app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constants', 'nameData', function ($rootScope, $scope, NameFactory, constants, nameData) {
+
+    //console.log('data ', nameData);
+    $scope.nameData = nameData;
+
+
+
 
         //NameFactory.getNames(constants.namesDirectory).success(function (data) {
         //

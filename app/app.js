@@ -13,7 +13,7 @@ var app = angular.module('babyNames', [
     'ui.grid',
     'ui.grid.pagination'
 ])
-.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', function ($stateProvider, $httpProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', 'constants', function ($stateProvider, $httpProvider, $urlRouterProvider, constants) {
     'use strict';
 
         var previousPath;
@@ -42,12 +42,12 @@ var app = angular.module('babyNames', [
             .state('app.home', {
                 url: '/home',
                 templateUrl: '/views/tpls/home.html',
-                controller: 'HomeController'
-                //resolve: {
-                //    allNames: function (NameFactory) {
-                //        return NameFactory.getNames();
-                //    }
-                //}
+                controller: 'HomeController',
+                resolve: {
+                    nameData: function (NameFactory) {
+                        return NameFactory.getNames(constants.namesDirectory);
+                    }
+                }
             });
 
 }]);

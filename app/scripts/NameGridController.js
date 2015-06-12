@@ -3,13 +3,18 @@
  */
 'use strict';
 
-app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'constants', function ($rootScope, $scope, NameFactory, constants) {
+app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'constants', 'gridConfig', function ($rootScope, $scope, NameFactory, constants, gridConfig) {
 
-    NameFactory.getNames(constants.namesDirectory).success(function (data) {
-        console.log('data ', data[0].names);
-        $scope.nameData = data[0].names;
-        $scope.totalNamesForCurrentYear = $scope.nameData.length;
-        $scope.year = $scope.nameData[0].year;
+    //NameFactory.getNames(constants.namesDirectory).success(function (data) {
+        //console.log('data ', data[0].names);
+        $scope.nameGridOptions = gridConfig;
+        console.log('grid options ', $scope.nameGridOptions);
+        console.log('data in nameCtrl ', $scope.nameData[0]);
+        $scope.nameGridOptions.data = $scope.nameData[0].names;
+        //
+        //$scope.totalNamesForCurrentYear = $scope.nameGridOptions.data.length;
+        //$scope.year = $scope.nameGridOptions.data[0].year;
+
 
     //    var arr = [data[0]];
     //    $rootScope.totalYears = data.length;
@@ -35,7 +40,7 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
     //        console.error('Repos error', status, data);
     //    });
 
-    });
+    //});
 
 
 

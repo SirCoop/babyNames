@@ -15,7 +15,7 @@
 
         <div ng-controller="NameGridController">
             <div>{{totalNamesForCurrentYear}} unique names given in {{year}}</div>
-            <div ui-grid="{data: nameData}" class="myGrid"></div>
+            <div ui-grid="nameGridOptions" ui-grid-pagination class="myGrid"></div>
         </div>
 
 
