@@ -26,15 +26,24 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
         gridApi.infiniteScroll.on.needLoadMoreDataTop($scope, $scope.getDataUp);
         $scope.gridApi = gridApi;
     };
+    $scope.nameGridOptions.data = [];
+
     //console.log('grid options ', $scope.nameGridOptions);
     //console.log('data in nameCtrl ', $scope.nameData[0]);
     //$scope.nameGridOptions.data = $scope.nameData[134].names;
 
     //  take only a portion of the data, circa 2006 to present
-    $scope.nameGridOptions.data = newArr.slice(-300000);
-    console.log('newArr ', newArr);
-    $scope.totalNamesForCurrentYear = $scope.nameGridOptions.data.length;
-    $scope.year = $scope.nameGridOptions.data[134].year;
+    //$scope.nameGridOptions.data = newArr.slice(-300000);
+
+    //  *******try this for the sake of infinite scroll******
+    newArr = newArr.slice(-300000);
+
+    //console.log('newArr ', newArr);
+    //$scope.totalNamesForCurrentYears = $scope.nameGridOptions.data.length;
+    //$scope.year = $scope.nameGridOptions.data[134].year;
+
+    $scope.totalNamesForCurrentYear = newArr.length
+    $scope.year = newArr[0].year;
 
     //  *********try infinite scroll***********
 
@@ -45,11 +54,11 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
         var promise = $q.defer();
         //$http.get('/data/10000_complex.json')
         //    .success(function(data) {
-                var newData = $scope.getPage($scope.nameGridOptions.data, $scope.lastPage);
-        $scope.nameGridOptions.data = $scope.nameGridOptions.data.concat(newData);
+                var newData = $scope.getPage(newArr, $scope.lastPage);
+        $scope.nameGridOptions.data = newData;
                 promise.resolve();
             //});
-        return promise;
+        return promise.promise;
     };
 
     $scope.getDataDown = function() {
@@ -57,7 +66,7 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
         //$http.get('/data/10000_complex.json')
         //    .success(function(data) {
                 $scope.lastPage++;
-                var newData = $scope.getPage($scope.nameGridOptions.data, $scope.lastPage);
+                var newData = $scope.getPage(newArr, $scope.lastPage);
                 $scope.gridApi.infiniteScroll.saveScrollPercentage();
         $scope.nameGridOptions.data = $scope.nameGridOptions.data.concat(newData);
                 $scope.gridApi.infiniteScroll.dataLoaded($scope.firstPage > 0, $scope.lastPage < 4).then(function() {$scope.checkDataLength('up');}).then(function() {
@@ -68,7 +77,7 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
             //    $scope.gridApi.infiniteScroll.dataLoaded();
             //    promise.reject();
             //});
-        return promise;
+        return promise.promise;
     };
 
     $scope.getDataUp = function() {
@@ -76,7 +85,7 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
         //$http.get('/data/10000_complex.json')
             //.success(function(data) {
                 $scope.firstPage--;
-                var newData = $scope.getPage($scope.nameGridOptions.data, $scope.firstPage);
+                var newData = $scope.getPage(newArr, $scope.firstPage);
                 $scope.gridApi.infiniteScroll.saveScrollPercentage();
         $scope.nameGridOptions.data = newData.concat($scope.nameGridOptions.data);
                 $scope.gridApi.infiniteScroll.dataLoaded($scope.firstPage > 0, $scope.lastPage < 4).then(function() {$scope.checkDataLength('down');}).then(function() {
@@ -87,7 +96,7 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
             //    $scope.gridApi.infiniteScroll.dataLoaded();
             //    promise.reject();
             //});
-        return promise;
+        return promise.promise;
     };
 
 
@@ -139,9 +148,7 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
         });
     };
 
-    console.log('get first data ', $scope.getFirstData());
-
-    $scope.getFirstData().resolve(function(){
+    $scope.getFirstData().then(function(){
         $timeout(function() {
             // timeout needed to allow digest cycle to complete,and grid to finish ingesting the data
             // you need to call resetData once you've loaded your data if you want to enable scroll up,
