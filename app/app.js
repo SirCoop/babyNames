@@ -10,7 +10,8 @@ var app = angular.module('babyNames', [
     'ngCookies',
     'angularSpinner',
     'ui.grid',
-    'ui.grid.pagination'
+    'ui.grid.pagination',
+    'ui.grid.infiniteScroll'
 ])
 .config(['$stateProvider', '$httpProvider', '$urlRouterProvider', 'constants', function ($stateProvider, $httpProvider, $urlRouterProvider, constants) {
     'use strict';

@@ -6,7 +6,7 @@ angular.module('babyNames').controller('MainController', ['$scope', '$rootScope'
     'use strict';
 
     //$rootScope.showLoader = $scope.showLoader;
-    console.log('main ctrl ');
+    //console.log('main ctrl ');
 
 
     //$scope.mainHello = 'hello from main controller';

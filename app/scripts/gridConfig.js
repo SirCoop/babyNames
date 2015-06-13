@@ -5,8 +5,13 @@
 
 app.value('gridConfig',
     {
-        paginationPageSizes: [250, 500, 1000],
-        paginationPageSize: 250,
+        paginationPageSizes: [5000, 10000, 20000],
+        paginationPageSize: 5000,
+        flatEntityAccess: true,
+        infiniteScrollRowsFromEnd: 2000,
+        infiniteScrollUp: true,
+        infiniteScrollDown: true,
+        fastWatch: true,
         columnDefs: [
             { field: 'year', displayName: 'BirthYear', width: "*", resizable: false},
             { field: 'name', displayName: 'First Name', width: "20%" },

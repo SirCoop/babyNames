@@ -5,7 +5,10 @@
 
 app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constants', 'nameData', function ($rootScope, $scope, NameFactory, constants, nameData) {
     //console.log('data ', nameData);
+
+
     $scope.nameData = nameData;
+    $scope.yearData = '';
 }]);
 
 
