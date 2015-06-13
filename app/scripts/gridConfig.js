@@ -5,10 +5,10 @@
 
 app.value('gridConfig',
     {
-        paginationPageSizes: [250, 500, 1000],
-        paginationPageSize: 1000,
+        paginationPageSizes: [4000, 6500, 8000],
+        paginationPageSize: 4000,
         flatEntityAccess: true,
-        infiniteScrollRowsFromEnd: 500,
+        infiniteScrollRowsFromEnd: 125,
         infiniteScrollUp: true,
         infiniteScrollDown: true,
         fastWatch: true,
