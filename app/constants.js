@@ -6,6 +6,7 @@
 app.constant('constants',
     {
         namesDirectory: '/_resources/BabyNames.json',
-        paginationTemplate: '/views/tpls/pagination.html'
+        paginationTemplate: '/views/tpls/pagination.html',
+        findAll: ''
     }
 );

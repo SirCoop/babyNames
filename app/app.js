@@ -44,8 +44,12 @@ var app = angular.module('babyNames', [
                 templateUrl: '/views/tpls/home.html',
                 controller: 'HomeController',
                 resolve: {
+                    //nameData: function (NameFactory) {
+                    //    return NameFactory.getNames(constants.namesDirectory);
+                    //}
+
                     nameData: function (NameFactory) {
-                        return NameFactory.getNames(constants.namesDirectory);
+                        return NameFactory.getNamesFromDB(constants.findAll)
                     }
                 }
             });

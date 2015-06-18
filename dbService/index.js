@@ -4,6 +4,7 @@
 var CONSTANTS = require('../constants')();
 var dataSet = require(CONSTANTS.PAGESJSON);
 var Q = require('q');
+var babyNameSchema = require('./model/BabyName');
 
 
 var babyNameDbDump = function () {
@@ -30,23 +31,14 @@ function dbDump () {
     db.on('error', console.error.bind(console, 'mongo connection error: '));
     db.once('open', function (callback) {
 
-        //  define model schema
-        var Schema = mongoose.Schema;
-        var babyNameSchema = new Schema({
-            gender: String,
-            name: String,
-            quantity: Number,
-            year: Number,
-        });
+        //  create models and schema here
+        //console.log('babyNameSchema ', babyNameSchema());
+        var babyNamesModel = babyNameSchema();
 
-        //  compile BabyName to model using the babyNameSchema as the structure
-        //  Mongoose also creates a MongoDB collection called 'BabyNames' for these documents
-        //  BabyName is capitalized because the result of a compiled model is a constructor function
-        var BabyName = mongoose.model('BabyName', babyNameSchema);
+        console.log('db opened ', db.name);
 
-        //console.log('db opened ', db.name);
-
-        dbInsert(dataSet, BabyName);
+        dbInsert(dataSet, babyNamesModel);
+        module.exports = babyNamesModel;
     });
 
     mongoose.connect(CONSTANTS.DB_URI);
