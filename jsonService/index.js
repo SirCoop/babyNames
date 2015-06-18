@@ -43,7 +43,7 @@
 'use strict';
 
 var fs = require('graceful-fs')
-var CONSTANTS = require('../constants.js')();
+var CONSTANTS = require('../constants')();
 
 var JSONFactory = function(opts) {
     return new MakeJSON(opts)
@@ -74,7 +74,7 @@ function MakeJSON(opts) {
         x.forEach(function (nameObj) {
             var contentsArr = nameObj.split(',');
             babyNames.names.push({
-                year: file.substring(3,7),
+                year: parseInt(file.substring(3,7)),
                 name: contentsArr[0],
                 gender: contentsArr[1],
                 quantity: parseInt(contentsArr[2])

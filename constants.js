@@ -36,12 +36,16 @@ module.exports = function(opts) {
         PAGESJSON: path.join(__dirname, '/app/_resources/BabyNames.json'),
         RESOURCEDATA: path.join(__dirname, '/app/namesByBirthYear'),
         SERVICE: {
-            JSON_SERVICE: path.join(__dirname, '/jsonService/index.js'),
+            JSON_SERVICE: path.join(__dirname, '/jsonService/index'),
+            DB_SERVICE: path.join(__dirname, '/dbService/index')
         },
 
         ENABLE: {
-            json_service: 0
-        }
+            json_service: 0,
+            db_service: 0
+        },
+        DB_URI: 'mongodb://localhost/babyNames'
+        //DB_SERVICE: path.join(__dirname, '/app/dbService')
 
         //DATASERVICE: {
         //    DSBASE: __dirname + '/backend/service/DataService/_dsBase',

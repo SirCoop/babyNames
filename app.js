@@ -12,23 +12,23 @@ var path = require('path');
 var bodyParser = require('body-parser');
 //  used to log requests to console
 var morgan = require('morgan');
-//  object document mapping **Mongo.DB.Collection.Documents <----> JS Objects
-var mongoose = require('mongoose');
 //  set web server port for this app
 var port = process.env.PORT || 1213;
 
 // retrieve app constants
-var CONSTANTS = require('./constants.js')();
+var CONSTANTS = require('./constants')();
 
-//  backend service to concatenate contes of baby name files into BabyNames.json
+//  backend service to concatenate baby name files into BabyNames.json
 if (CONSTANTS.ENABLE.json_service) {
     //require(path.join(__dirname, '/jsonService/index.js'))();
     require(CONSTANTS.SERVICE.JSON_SERVICE)();
 }
 
+//  backend service to construct db model from schema, read BabyNames.json and write each obj to db
+if (CONSTANTS.ENABLE.db_service) {
+    require(CONSTANTS.SERVICE.DB_SERVICE)();
+}
 
-//  connect to mongo
-//mongoose.connect('mongodb://localhost/babyNames');
 
 // log all requests to console
 app.use(morgan('dev'));

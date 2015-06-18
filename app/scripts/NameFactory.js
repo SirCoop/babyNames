@@ -5,8 +5,14 @@
 
 app.factory('NameFactory', ['$http', '$rootScope', function ($http, $rootScope) {
     return {
-        getNames: function (dir) {
-            return $http.get(dir).then(function (res) {
+        //getNames: function (dir) {
+        //    return $http.get(dir).then(function (res) {
+        //        return res.data;
+        //    });
+        //}
+
+        getNamesFromDB: function (dir) {
+            return $http.get().then(function (res) {
                 return res.data;
             });
         }

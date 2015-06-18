@@ -21,11 +21,13 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
 
 
     $scope.nameGridOptions = gridConfig;
-    $scope.nameGridOptions.onRegisterApi = function (gridApi) {
-        gridApi.infiniteScroll.on.needLoadMoreData($scope, $scope.getDataDown);
-        gridApi.infiniteScroll.on.needLoadMoreDataTop($scope, $scope.getDataUp);
-        $scope.gridApi = gridApi;
-    };
+
+    //  for infinite scroll
+    //$scope.nameGridOptions.onRegisterApi = function (gridApi) {
+    //    gridApi.infiniteScroll.on.needLoadMoreData($scope, $scope.getDataDown);
+    //    gridApi.infiniteScroll.on.needLoadMoreDataTop($scope, $scope.getDataUp);
+    //    $scope.gridApi = gridApi;
+    //};
 
     $scope.nameGridOptions.data = newArr.slice(-300000);
 
