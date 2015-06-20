@@ -19,10 +19,10 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
     //
     //splitDataByYear($scope.nameData);
     //
-    //$scope.nameGridOptions = gridConfig;
+    $scope.nameGridOptions = gridConfig;
     //
-    //$scope.nameGridOptions.data = newArr.slice(-300000);
-    //
+    $scope.nameGridOptions.data = $scope.nameData;
+
     //console.log('$scope.nameGridOptions.data ', $scope.nameGridOptions.data);
     ////$scope.totalNamesForCurrentYears = $scope.nameGridOptions.data.length;
     ////$scope.year = $scope.nameGridOptions.data[134].year;

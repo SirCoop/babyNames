@@ -16,7 +16,7 @@
         <div ng-controller="NameGridController">
             <div ng-if="nameData"><b>{{totalNamesForCurrentYear | number}} unique names given to babies born in the United States since {{year}}.</b></div>
             <div ng-if="yearData"><b>{{totalNamesForCurrentYear | number}} unique names given to babies born in the United States during the year {{year}}.</b></div>
-            <div ui-grid="nameGridOptions" ui-grid-pagination ui-grid-infinite-scroll class="myGrid"></div>
+            <div ui-grid="nameGridOptions" ui-grid-pagination class="myGrid"></div>
         </div>
     </div>
 </div>
