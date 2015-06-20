@@ -90,6 +90,7 @@ function startApp() {
     app.use('/api', api);
 
     app.get('/api/all', function (req, res) {
+        console.log('retrieving all names');
         BabyName.find({}, function (err, result) {
             if (err) console.log('BabyName fetch error: ', err);
             //console.log('typeof res ', typeof result);
