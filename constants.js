@@ -42,7 +42,7 @@ module.exports = function(opts) {
 
         ENABLE: {
             json_service: 0,
-            db_service: 0,
+            db_service: 1,
             api: 0
         },
         DB_URI: 'mongodb://localhost/babyNames',
