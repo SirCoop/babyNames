@@ -21,7 +21,7 @@ var mongoose = require('mongoose');
 //  mongoose model - this gives me all the schema enforced CRUD operations for a BabyName model
 var BabyName = require(CONSTANTS.MODEL.BABYNAME);
 //  mongooose connection
-var db, model;
+var db;
 
 
 //  backend service to concatenate baby name files into BabyNames.json
@@ -32,25 +32,25 @@ if (CONSTANTS.ENABLE.json_service) {
 
 //  backend service to construct db model from schema, read BabyNames.json and write each obj to db
 //  if enabled, set ENABLE.api = 0 & vice versa
-if (CONSTANTS.ENABLE.db_service) {
+if (CONSTANTS.ENABLE.db_service && !turnOffDbService) {
     require(CONSTANTS.SERVICE.DB_SERVICE)();
+    startApp();
 }
 
 //  ****Open DB Connection - FOR LOCALHOST USE ONLY****
-//if (CONSTANTS.ENABLE.api) {
-//    mongoose.connect(CONSTANTS.DB_URI);
-//    db = mongoose.connection;
-//    db.on('error', console.error.bind(console, 'app.js mongo connection error: '));
-//    db.once('open', function (callback) {
-//        console.log('db opened from app.js:', db.name);
-//        console.log('app.js mongoose ready, in state: ', mongoose.connection.readyState);
-//        model = BabyName();
-//        startApp();
-//    });
-//}
+if (CONSTANTS.ENABLE.api) {
+    mongoose.connect(CONSTANTS.DB_URI);
+    db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'app.js mongo connection error: '));
+    db.once('open', function (callback) {
+        console.log('db opened from app.js:', db.name);
+        console.log('app.js mongoose ready, in state: ', mongoose.connection.readyState);
+        startApp();
+    });
+}
 
 //  for heroku, disable CONSTANTS.ENABLE.api and just run startApp()
-startApp();
+//startApp();
 
 //  ****Server Stuff****
 function startApp() {
