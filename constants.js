@@ -42,28 +42,20 @@ module.exports = function(opts) {
 
         ENABLE: {
             json_service: 0,
-            db_service: 1
+            db_service: 0,
+            api: 1
         },
-        DB_URI: 'mongodb://localhost/babyNames'
+        DB_URI: 'mongodb://localhost/babyNames',
         //DB_SERVICE: path.join(__dirname, '/app/dbService')
 
         //DATASERVICE: {
         //    DSBASE: __dirname + '/backend/service/DataService/_dsBase',
         //    DSARTIST: __dirname + '/backend/service/DataService/dsArtist',
-        //    DSEVENT: __dirname + '/backend/service/DataService/dsEvent',
-        //    DSNEWS: __dirname + '/backend/service/DataService/dsNews',
-        //    DSARTIFACT: __dirname + '/backend/service/DataService/dsArtifact',
-        //    DSSITECONFIG: __dirname + '/backend/service/DataService/dsSiteConfig'
         //},
 
-        //MODEL: {
-        //    ARTIFACT: __dirname + '/backend/model/Artifact',
-        //    ARTIST: __dirname + '/backend/model/Artist',
-        //    NEWS: __dirname + '/backend/model/News',
-        //    EVENT: __dirname + '/backend/model/Event',
-        //    USER: __dirname + '/backend/model/User',
-        //    SITECONFIG: __dirname + '/backend/model/SiteConfig'
-        //}
+        MODEL: {
+            BABYNAME: path.join(__dirname, '/dbService/model/BabyName')
+        }
 
     }
 };

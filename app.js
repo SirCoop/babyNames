@@ -14,6 +14,10 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 //  set web server port for this app
 var port = process.env.PORT || 1213;
+//  object data modeling: mongoDb <---> JS objects
+var mongoose = require('mongoose');
+//  mongo db connection
+var db;
 
 // retrieve app constants
 var CONSTANTS = require('./constants')();
@@ -25,59 +29,77 @@ if (CONSTANTS.ENABLE.json_service) {
 }
 
 //  backend service to construct db model from schema, read BabyNames.json and write each obj to db
+//  if enabled, set ENABLE.api = 0 & vice versa
 if (CONSTANTS.ENABLE.db_service) {
     require(CONSTANTS.SERVICE.DB_SERVICE)();
 }
 
+//  ****Open DB Connection****
+if (CONSTANTS.ENABLE.api) {
+    mongoose.connect(CONSTANTS.DB_URI);
+    db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'app.js mongo connection error: '));
+    db.once('open', function (callback) {
+        console.log('db opened from app.js:', db.name);
+        console.log('mongoose ready, in state: ', mongoose.connection.readyState);
+        startApp();
+    });
+}
+
+//  ****Server Stuff****
+function startApp() {
 
 // log all requests to console
-app.use(morgan('dev'));
-
-// basic route for the home page
-//app.get('/', function(req, res){
-//    console.log('__dirname is ', __dirname);
-//    console.log('process.cwd() is ', process.cwd());
-//    //res.sendFile(path.join(__dirname + '/index.html'));
-//    //res.sendFile(path.join(__dirname + '/app/index.html'));
-//
-//
-//
-//});
+    app.use(morgan('dev'));
 
 //  set the app folder to serve static assets
-app.use(express.static(path.join(__dirname, 'app')));
-console.log('path ', path.join(__dirname, 'app'));
-
-//  set up the one route to the index.html file
-//app.get('*', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'app/index.html'));
-//});
+    app.use(express.static(path.join(__dirname, 'app')));
+    console.log('path ', path.join(__dirname, 'app'));
 
 //  use body parser to grab POST req body info
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
 
 //  start server
 // process.env.PORT || 4711 just in case port environment variable is set on deployment e.g.Heroku
-var port =  process.env.PORT || 1213;
+    var port = process.env.PORT || 1213;
 // start server
-app.listen(port, function(){
-    console.log('Express server listening on port %d in %s mode', port, app.settings.env);
-});
+    app.listen(port, function () {
+        console.log('Express server listening on port %d in %s mode', port, app.settings.env);
+    });
 
 //  let's create another instance of an express router to handle api routing
-var api = express.Router();
+    var api = express.Router();
 
 //   define api routes
-api.get('/', function (req, res) {
-    res.send("/api is the route");
-});
+    api.get('/', function (req, res) {
+        res.send("/api is the route");
+    });
 
-api.get('/coop', function (req, res) {
-   res.send('/coop is the route. $4.2MM by 4July2018');
-});
+    api.get('/coop', function (req, res) {
+        res.send('/coop is the route. $4.2MM by 4July2018');
+    });
 
 //  mount our api router onto the original express app router at path /api
-app.use('/api', api);
+    app.use('/api', api);
+
+//  Mongo Model for CRUD ops
+//var babyName = require()
+
+
+    app.get('/api/all', function (req, res) {
+        //var babyName = require(CONSTANTS.MODEL.BABYNAME)();
+        ////console.log('hit /api/all');
+        //console.log('babyNameModel in route ', babyName);
+        //console.log('test findall ', babyName.find(function (err, babyNames) {
+        //    if (err) {
+        //        return next(err);
+        //    }
+        //    res.json(babyNames);
+        //}));
+        res.send('truuuu');
+
+    });
+}
 
 

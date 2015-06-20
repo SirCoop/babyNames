@@ -49,7 +49,7 @@ var app = angular.module('babyNames', [
                     //}
 
                     nameData: function (NameFactory) {
-                        return NameFactory.getNamesFromDB(constants.findAll)
+                        return NameFactory.getNamesFromDB(constants.findAll);
                     }
                 }
             });

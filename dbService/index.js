@@ -4,49 +4,103 @@
 var CONSTANTS = require('../constants')();
 var dataSet = require(CONSTANTS.PAGESJSON);
 var Q = require('q');
-var babyNameSchema = require('./model/BabyName');
+//var babyNameSchema = require('./ModelFactory');
+var mongoose = require('mongoose');
+var db;
 
+//  mongoose model constructor
+var BabyName = require('./model/BabyName');
 
+//  return db migration constructor
 var babyNameDbDump = function () {
     return new dbDump();
 };
 
 function dbInsert (data, Model) {
-    data.forEach(function (obj) {
-        var babyName = new Model(obj);
-        babyName.save(function (err, babyName) {
-            if(err) {
-                console.log('error on babyName.save() ', err);
-            }
-            console.log('babyName model saved ', babyName);
-        });
+    console.log('dbInsert() called');
+    data.forEach(function (obj, index, array) {
+        //console.log('obj ', obj);
+        //console.log('dataArr length ', array.length);
+        obj.names.forEach(function (nameObj, index, array) {
+            //console.log('nameDataArr length ', array.length);
+            var babyName = new Model(nameObj);
+            //console.log('babyName model constructed ', babyName);
+            babyName.save(function (err, babyName) {
+                if(err) {
+                    console.log('error on babyName.save() ', err);
+                }
+                //console.log('saved');
+                //console.log('babyName model saved ', babyName);
+            });
 
+        });
+        //console.log('index ', index);
+        //if (index === array.length - 1) {
+        //    console.log('db closed');
+        //    db.close();
+        //}
     });
 }
 
 function dbDump () {
-    //  object document mapping **Mongo.DB.Collection.Documents <----> JS Objects
-    var mongoose = require('mongoose');
-    var db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'mongo connection error: '));
-    db.once('open', function (callback) {
-
-        //  create models and schema here
-        //console.log('babyNameSchema ', babyNameSchema());
-        var babyNamesModel = babyNameSchema();
-
-        console.log('db opened ', db.name);
-
-        dbInsert(dataSet, babyNamesModel);
-        module.exports = babyNamesModel;
-    });
-
-    mongoose.connect(CONSTANTS.DB_URI);
-
-
-    //console.log('dataSet ', dataSet[0].names[0]);
-
+    if (mongoose.connection.readyState > 0) {
+        console.log('mongoose ready, in state: ', mongoose.connection.readyState);
+        db = mongoose.connection;
+        db.on('error', console.error.bind(console, 'DATASERVICE mongo connection error: '));
+        db.once('open', function (callback) {
+            console.log('db opened from DATASERVICE:', db.name);
+            console.log('mongoose ready, in state: ', mongoose.connection.readyState);
+            dbInsert(dataSet, BabyName);
+        });
+    }
+    else {
+        mongoose.connect(CONSTANTS.DB_URI);
+        db = mongoose.connection;
+        db.on('error', console.error.bind(console, 'DATASERVICE mongo connection error: '));
+        db.once('open', function (callback) {
+            console.log('db opened from DATASERVICE', db.name);
+            console.log('mongoose ready, in state: ', mongoose.connection.readyState);
+            dbInsert(dataSet, BabyName);
+        });
+    }
 }
 
 module.exports = babyNameDbDump;
+
+
+
+
+//  ***SO Solution to connect to Mongo DB***
+/*
+ var mongoose = require('mongoose');
+
+ var Db = require('mongodb').Db,
+ Server = require('mongodb').Server;
+
+ console.log(">> Connecting to mongodb on 127.0.0.1:27017");
+
+ var db = new Db('test', new Server("127.0.0.1", 27017, {}));
+
+ db.open(function(err, db) {
+ console.log(">> Opening collection test");
+ try {
+ db.collection('test', function(err, collection) {
+ console.log("dropped: ");
+ console.dir(collection);
+ });
+ }
+ catch (err) {
+ if (!db) {
+ throw('MongoDB server connection error!');
+ }
+ else {
+ throw err;
+ }
+ }
+ });
+
+ process.on('uncaughtException', function(err) {
+ console.log(err);
+ });
+ */
 
