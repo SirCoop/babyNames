@@ -49,6 +49,9 @@ if (CONSTANTS.ENABLE.api) {
     });
 }
 
+//  for heroku, disable CONSTANTS.ENABLE.api and just run startApp()
+startApp();
+
 //  ****Server Stuff****
 function startApp() {
 
