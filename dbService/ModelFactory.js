@@ -15,9 +15,9 @@
 var mongoose = require('mongoose');
 var CONSTANTS = require('../constants')();
 
-mongoose.connect(CONSTANTS.DB_URI, function (err) {
-    if (err) console.log('problem connecting to mongo', err);
-});
+//mongoose.connect(CONSTANTS.DB_URI, function (err) {
+//    if (err) console.log('problem connecting to mongo', err);
+//});
 
 //  builds the mongoose model constructor
 var ModelFactory = function (name, schema) {

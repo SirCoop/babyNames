@@ -18,27 +18,28 @@ var babyNameDbDump = function () {
 
 function dbInsert (data, Model) {
     console.log('dbInsert() called');
-    data.forEach(function (obj, index, array) {
+
+    data.slice(-4, -1).forEach(function (obj, index, array) {
         //console.log('obj ', obj);
         //console.log('dataArr length ', array.length);
         obj.names.forEach(function (nameObj, index, array) {
             //console.log('nameDataArr length ', array.length);
-            var babyName = new Model(nameObj);
-            //console.log('babyName model constructed ', babyName);
-            babyName.save(function (err, babyName) {
+            var BabyName = new Model(nameObj);
+            //console.log('babyName model constructed ', BabyName);
+            BabyName.save(function (err, BabyName) {
                 if(err) {
-                    console.log('error on babyName.save() ', err);
+                    console.log('error on BabyName.save() ', err);
                 }
-                //console.log('saved');
-                //console.log('babyName model saved ', babyName);
+                console.log('saved');
+                console.log('BabyName model saved ', BabyName);
             });
 
         });
-        //console.log('index ', index);
-        //if (index === array.length - 1) {
-        //    console.log('db closed');
-        //    db.close();
-        //}
+        console.log('index ', index);
+        if (index === array.length - 1) {
+            console.log('db closed');
+            db.close();
+        }
     });
 }
 

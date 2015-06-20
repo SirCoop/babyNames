@@ -3,6 +3,8 @@
  */
 'use strict';
 
+// retrieve app constants
+var CONSTANTS = require('./constants')();
 //  call express and define an instance
 var express = require('express');
 var app = express();
@@ -16,11 +18,11 @@ var morgan = require('morgan');
 var port = process.env.PORT || 1213;
 //  object data modeling: mongoDb <---> JS objects
 var mongoose = require('mongoose');
-//  mongo db connection
-var db;
+//  mongoose model - this gives me all the schema enforced CRUD operations for a BabyName model
+var BabyName = require(CONSTANTS.MODEL.BABYNAME);
+//  mongooose connection
+var db, model;
 
-// retrieve app constants
-var CONSTANTS = require('./constants')();
 
 //  backend service to concatenate baby name files into BabyNames.json
 if (CONSTANTS.ENABLE.json_service) {
@@ -41,7 +43,8 @@ if (CONSTANTS.ENABLE.api) {
     db.on('error', console.error.bind(console, 'app.js mongo connection error: '));
     db.once('open', function (callback) {
         console.log('db opened from app.js:', db.name);
-        console.log('mongoose ready, in state: ', mongoose.connection.readyState);
+        console.log('app.js mongoose ready, in state: ', mongoose.connection.readyState);
+        model = BabyName();
         startApp();
     });
 }
@@ -88,16 +91,52 @@ function startApp() {
 
 
     app.get('/api/all', function (req, res) {
-        //var babyName = require(CONSTANTS.MODEL.BABYNAME)();
-        ////console.log('hit /api/all');
-        //console.log('babyNameModel in route ', babyName);
+        //  **** first mongoose way, no luck****
+
+        //var BabyName = require(CONSTANTS.MODEL.BABYNAME)();
+        //console.log('hit /api/all');
+        //console.log('babyNameModel in route ', BabyName);
         //console.log('test findall ', babyName.find(function (err, babyNames) {
         //    if (err) {
         //        return next(err);
         //    }
         //    res.json(babyNames);
         //}));
-        res.send('truuuu');
+
+        //var data = babyName.find(function (err, babyNames) {
+        //    if (err) {
+        //        console.log('error getting babyNames: ', err);
+        //    }
+        //    else {
+        //        return babyNames;
+        //    }
+        //})
+
+        //  **** second mongoose way, no luck****
+        //function find (collec, query, callback) {
+        //    mongoose.connection.db.collection(collec, function (err, collection) {
+        //        collection.find(query).toArray(callback);
+        //    });
+        //}
+
+        //find('babynames',{}, function (err, docs) {
+        //    //console.log('data ', docs);
+        //    return JSON.stringify(docs);
+        //})
+        //console.log('data ', data);
+        //res.send(data);
+
+        //  **** mongo way****
+        //console.log('model ', );
+
+        var data = BabyName.find({}, function (err, docs) {
+            console.log('docs ', docs);
+            //res.json(docs);
+            //return JSON.stringify(docs);
+        });
+        console.log('data', res.send(data));
+
+        //res.send(data);
 
     });
 }
