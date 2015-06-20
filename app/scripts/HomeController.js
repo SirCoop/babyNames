@@ -3,12 +3,12 @@
  */
 'use strict';
 
-app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constants', 'nameData', function ($rootScope, $scope, NameFactory, constants, nameData) {
-    //console.log('data ', nameData);
+app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constants', function ($rootScope, $scope, NameFactory, constants, allNames) {
+    console.log('data ', allNames);
 
 
-    $scope.nameData = nameData;
-    $scope.yearData = '';
+    //$scope.nameData = allNames;
+    //$scope.yearData = '';
 }]);
 
 

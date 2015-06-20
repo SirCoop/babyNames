@@ -3,9 +3,9 @@
  */
 'use strict';
 
-app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'constants', 'gridConfig', '$q', '$timeout', function ($rootScope, $scope, NameFactory, constants, gridConfig, $q, $timeout, nameData) {
+app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'constants', 'gridConfig', '$q', '$timeout', function ($rootScope, $scope, NameFactory, constants, gridConfig, $q, $timeout) {
 
-    console.log('nameData in controller ', nameData);
+    //console.log('allNames in controller ', allNames);
 
     //var newArr = [];
     //

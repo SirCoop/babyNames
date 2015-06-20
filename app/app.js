@@ -48,7 +48,7 @@ var app = angular.module('babyNames', [
                     //    return NameFactory.getNames(constants.namesDirectory);
                     //}
 
-                    nameData: function (NameFactory) {
+                    allNames: function (NameFactory) {
                         return NameFactory.getNamesFromDB(constants.findAll);
                     }
                 }

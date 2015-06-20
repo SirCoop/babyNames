@@ -14,7 +14,9 @@ app.factory('NameFactory', ['$http', '$rootScope', function ($http, $rootScope) 
         getNamesFromDB: function (dir) {
             console.log('dir ', dir);
             return $http.get(dir).then(function (res) {
-                return res.data;
+                var data = res.data;
+                console.log('data in NameFactory ', data);
+                return data;
             });
         }
     }
