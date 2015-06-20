@@ -36,18 +36,18 @@ if (CONSTANTS.ENABLE.db_service) {
     require(CONSTANTS.SERVICE.DB_SERVICE)();
 }
 
-//  ****Open DB Connection****
-if (CONSTANTS.ENABLE.api) {
-    mongoose.connect(CONSTANTS.DB_URI);
-    db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'app.js mongo connection error: '));
-    db.once('open', function (callback) {
-        console.log('db opened from app.js:', db.name);
-        console.log('app.js mongoose ready, in state: ', mongoose.connection.readyState);
-        model = BabyName();
-        startApp();
-    });
-}
+//  ****Open DB Connection - FOR LOCALHOST USE ONLY****
+//if (CONSTANTS.ENABLE.api) {
+//    mongoose.connect(CONSTANTS.DB_URI);
+//    db = mongoose.connection;
+//    db.on('error', console.error.bind(console, 'app.js mongo connection error: '));
+//    db.once('open', function (callback) {
+//        console.log('db opened from app.js:', db.name);
+//        console.log('app.js mongoose ready, in state: ', mongoose.connection.readyState);
+//        model = BabyName();
+//        startApp();
+//    });
+//}
 
 //  for heroku, disable CONSTANTS.ENABLE.api and just run startApp()
 startApp();
