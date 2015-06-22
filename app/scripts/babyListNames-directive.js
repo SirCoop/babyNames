@@ -1,24 +1,24 @@
 /**
  * Created by Sir_Coop on 6/9/2015.
  */
-//'use strict';
-//
-//app.directive('babyListNames', function() {
-//        return {
+'use strict';
 
-            //restrict: 'A',
+app.directive('babyListNames', function() {
+        return {
+
+            restrict: 'A',
 
             //priority: 1000,
 
             //terminal: false,
 
-            //template: '<td>{{name}}</td>',
+            template: '<span><a ui-sref="app.letter({letter: letter})">{{letter}}</a></span>',
 
             //templateUrl: '',
 
-            //replace: true,
+            replace: true,
 
-            //scope: false,
+            scope: false,
 
             //transclude: false,
 
@@ -28,19 +28,17 @@
 
             //require: String,
 
-            //link: function(scope, iElement, iAttrs) {
-            //    //  scope = $scope
-            //    //  iElement = html element containing this attribute directive
-            //    //  iAttrs = all attributes of iElement
-            //    console.log('scope inside dir ', scope);
-            //    var obj = scope.nameObj;
-            //    scope.name = obj.name;
-            //    scope.gender = obj.gender;
-            //    scope.quantity = obj.quantity;
-            //
-            //
-            //
-            //},
+            link: function(scope, iElement, iAttrs) {
+                  //scope = $scope
+                  //iElement = html element containing this attribute directive
+                  //iAttrs = all attributes of iElement
+                //console.log('scope inside dir ', scope);
+                //console.log('iElement inside dir ', iElement);
+                //console.log('iAttrs inside dir ', iAttrs);
+
+
+
+            }
 
             // return an Object OR function
             //compile: function(tElement, tAttrs, transclude) {
@@ -51,8 +49,8 @@
             //            // or
             //            return function postLink(...) { ... }
             //        }
-//    };
-//});
+    };
+});
 
 /*Comments on option descriptions
 

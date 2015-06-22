@@ -13,10 +13,10 @@ app.value('gridConfig',
         //infiniteScrollDown: true,
         fastWatch: true,
         columnDefs: [
-            { field: 'year', displayName: 'BirthYear', width: "*", resizable: false},
-            { field: 'name', displayName: 'First Name', width: "20%" },
-            { field: 'gender', displayName: 'Gender', width: "**" },
-            { field: 'quantity', displayName: 'Babies given name', width: "**"}
-        ]
+            { field: 'year', displayName: 'BirthYear', width: "*", resizable: false, enableFiltering: true},
+            { field: 'name', displayName: 'First Name', width: "20%", enableFiltering: true },
+            { field: 'gender', displayName: 'Gender', width: "**", enableFiltering: true },
+            { field: 'quantity', displayName: 'Babies given name', width: "**", enableFiltering: true}
+        ],
     }
 );

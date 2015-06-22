@@ -22,11 +22,19 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
     $scope.nameGridOptions = gridConfig;
     //
     $scope.nameGridOptions.data = $scope.nameData;
+    $scope.nameGridOptions.onRegisterApi = function (gridApi) {
+        $scope.gridApi = gridApi;
+    };
+    console.log('$scope.gridApi ', $scope.gridApi);
 
-    //console.log('$scope.nameGridOptions.data ', $scope.nameGridOptions.data);
-    ////$scope.totalNamesForCurrentYears = $scope.nameGridOptions.data.length;
-    ////$scope.year = $scope.nameGridOptions.data[134].year;
-    //
+    //console.log('$scope.nameGridOptions.data.length ', $scope.nameGridOptions.data.length);
+    $scope.totalNamesForCurrentYears = $scope.nameGridOptions.data.length;
+    $scope.year = '2011';
+
+    $scope.showGridApi = function () {
+        console.log('grid api ', $scope.gridApi);
+    };
+
     //$scope.totalNamesForCurrentYear = $scope.nameGridOptions.data.length;
     //$scope.year = $scope.nameGridOptions.data[0].year;
 

@@ -48,10 +48,38 @@ var app = angular.module('babyNames', [
                     //    return NameFactory.getNames(constants.namesDirectory);
                     //}
 
+                    //allNames: function (NameFactory) {
+                    //    return NameFactory.getNamesFromDB(constants.findAll);
+                    //}
+                }
+            })
+            .state('app.allNames', {
+                url: '/names/all',
+                templateUrl: '/views/tpls/allNames.html',
+                controller: 'AllNamesController',
+                resolve: {
                     allNames: function (NameFactory) {
-                        return NameFactory.getNamesFromDB(constants.findAll);
+                        return NameFactory.getAllNames(constants.getAllNames);
                     }
                 }
+            })
+            .state('app.letter', {
+                url: '/names/:letter',
+                templateUrl: '/views/tpls/letter.html',
+                controller: 'LetterController',
+                resolve: {
+                    //nameData: function (NameFactory) {
+                    //    return NameFactory.getNames(constants.namesDirectory);
+                    //}
+                    params: function ($stateParams) {
+                        console.log('state params ', $stateParams);
+                    }
+
+                    //namesStartingWith: function (NameFactory) {
+                    //    return NameFactory.namesStartingWith(constants.findAll);
+                    //}
+                }
             });
+
 
 }]);
