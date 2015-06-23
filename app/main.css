@@ -128,3 +128,15 @@
 .letters {
     padding-right: .25em;
 }
+
+.boy.is-visible {
+    color: #3a99ff;
+}
+
+.is-visible.girl {
+    color: #ff6267;
+}
+
+.is-visible.surprise {
+    color: #ff892b;
+}
