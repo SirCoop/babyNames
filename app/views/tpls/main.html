@@ -1,14 +1,33 @@
 <!-- NAVIGATION -->
-<nav class="navbar navbar" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="#">Welcome to Baby Names!</a>
-        <div class="navbar-brand">135 years worth of names</div>
+<div class="row">
+    <div class="col-xs-8 col-md-offset-2 ">
+        <nav class="navbar navbar heading" role="navigation">
+            <div class="navbar-header">
+                <div class="navbar-brand heading" >Welcome to Baby Names!</div>
+                <div class="navbar-brand heading">135 years worth of names</div>
+            </div>
+            <ul class="nav navbar-nav">
+                <!--<li><a ui-sref="home">Home</a></li>-->
+                <!--<li><a ui-sref="about">About</a></li>-->
+            </ul>
+        </nav>
     </div>
-    <ul class="nav navbar-nav">
-        <!--<li><a ui-sref="home">Home</a></li>-->
-        <!--<li><a ui-sref="about">About</a></li>-->
-    </ul>
-</nav>
+</div>
+
+<div class="row">
+    <div class="col-xs-6 col-md-offset-3">
+        <section class="cd-intro">
+            <h1 class="cd-headline rotate-1">
+                <span>It's a...</span>
+                <span class="cd-words-wrapper">
+                    <b class="is-visible">Boy!</b>
+                    <b>Girl!</b>
+                    <b>Surprise!</b>
+                </span>
+            </h1>
+        </section>
+    </div>
+</div>
 
 <!--CONTENT-->
 <div ui-view></div>

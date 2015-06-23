@@ -5,6 +5,7 @@
 
 app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constants', function ($rootScope, $scope, NameFactory, constants) {
 
+
     //console.log('data in home controller ', allNames);
 
     //$scope.nameData = allNames;

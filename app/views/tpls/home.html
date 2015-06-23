@@ -1,20 +1,16 @@
 
-<div class="row">
-    <div class="col-xs-8 ">
-
-        <!--make a custom directive to supply an alphabet character along with service call to get names with that letter-->
-        <!--this require redesign of my data service. now i need to loop through all the babyNames.json objects and spit out a file-->
-        <!--containing only names starting with each letter of the alphabet-->
-
-        <!--<span alphabet-name></span>-->
-
-        <div><span ng-repeat="letter in letters" baby-list-names></span></div>
-
-        <div><a ui-sref="app.allNames">View All Names</a></div>
-
-
+<div class="row letters-row">
+    <div class="col-xs-10 col-md-offset-1">
+        <div ><span class="letters" ng-repeat="letter in letters" baby-list-names></span></div>
     </div>
 </div>
+
+<div class="row ">
+    <div class="col-xs-10 col-md-offset-1">
+        <div><a ui-sref="app.allNames">View All Names</a></div>
+    </div>
+</div>
+
 
 
 
