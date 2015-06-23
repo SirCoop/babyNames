@@ -89,7 +89,7 @@ function startApp() {
 //  mount our api router onto the original express app router at path /api
     app.use('/api', api);
 
-    app.get('/api/all', function (req, res) {
+    app.get('/api/names/all', function (req, res) {
         console.log('retrieving all names');
         BabyName.find({}, function (err, result) {
             if (err) console.log('BabyName fetch error: ', err);
@@ -98,6 +98,35 @@ function startApp() {
             res.send(result);
         });
     });
+
+    app.get('/api/names/all/:letter', function (req, res) {
+        console.log('retrieving names by letter');
+        console.log('request body ', req.params.letter);
+        //BabyName.find({ $where: "name.substring(0,1) === req.params.letter" }, function (err, result) {
+        //    if (err) console.log('BabyName fetch error: ', err);
+        //    //console.log('typeof res ', typeof result);
+        //    //console.log('result ', result);
+        //    res.send(result);
+        //});
+
+        //BabyName.find().where("name.substring(0,1)").equals(req.params.letter).select().exec(
+        //    function (err, result) {
+        //        if (err) console.log('BabyName fetch error: ', err);
+        //        console.log('typeof res ', typeof result);
+        //        console.log('result ', result);
+        //        res.send(result);
+        //});
+
+        BabyName.find({ $where: "this.name.substring(0,1) === 'req.params.letter'" }, function (err, result) {
+            if (err) console.log('BabyName fetch error: ', err);
+            //console.log('typeof res ', typeof result);
+            //console.log('result ', result);
+            res.send(result);
+        });
+    });
+
+
+
 }
 
 

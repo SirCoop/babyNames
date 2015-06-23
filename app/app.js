@@ -64,15 +64,15 @@ var app = angular.module('babyNames', [
                 }
             })
             .state('app.letter', {
-                url: '/names/:letter',
+                url: '/names/all/:letter',
                 templateUrl: '/views/tpls/letter.html',
                 controller: 'LetterController',
                 resolve: {
                     //nameData: function (NameFactory) {
                     //    return NameFactory.getNames(constants.namesDirectory);
                     //}
-                    params: function ($stateParams) {
-                        console.log('state params ', $stateParams);
+                    namesByLetter: function (NameFactory, $stateParams) {
+                        return NameFactory.getNamesByLetter(constants.getNamesByLetter, $stateParams.letter);
                     }
 
                     //namesStartingWith: function (NameFactory) {
