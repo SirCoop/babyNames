@@ -1,17 +1,17 @@
 <div class="row">
-    <div class="col-xs-12 ">
+    <div class="col-xs-12 col-xs-offset-1">
         <div>Names starting with the letter...</div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-xs-8 ">
+    <div class="col-xs-8 col-xs-offset-1">
         <a ui-sref="app.home">Home Page</a>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-xs-8 ">
+    <div class="col-xs-8 col-xs-offset-1">
         <div ng-controller="NameGridController">
             <div ng-if="totalNamesByLetter"><b>{{totalNamesByLetter | number}} unique names starting with the letter</b>{{letter}}<b>.</b></div>
             <div ui-grid="nameGridOptions" ui-grid-pagination class="myGrid"></div>

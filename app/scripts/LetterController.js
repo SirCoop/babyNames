@@ -10,7 +10,8 @@ app.controller('LetterController', ['$rootScope','$scope','NameFactory', 'consta
 
     console.log('letter controller active');
     $scope.totalNamesByLetter = namesByLetter.length;
-    $scope.nameData = namesByLetter;
 
+    $scope.nameData = namesByLetter;
+    console.log('names by letter ', $scope.nameData);
 
 }]);

@@ -1,15 +1,15 @@
 <div class="row">
-    <div class="col-xs-8 ">
+    <div class="col-xs-8 col-xs-offset-1">
         <a ui-sref="app.home">Home Page</a>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-xs-8 ">
+    <div class="col-xs-8 col-xs-offset-1">
         <div ng-controller="NameGridController">
             <div ng-if="nameData"><b>{{totalNamesForCurrentYears | number}} unique names given to babies born in the United States since {{year}}.</b></div>
             <div ng-if="yearData"><b>{{totalNamesForCurrentYears | number}} unique names given to babies born in the United States during the year {{year}}.</b></div>
-            <button ng-click="showGridApi()">Show Grid Api</button>
+            <!--<button ng-click="showGridApi()">Show Grid Api</button>-->
             <div ui-grid="nameGridOptions" ui-grid-pagination class="myGrid"></div>
         </div>
     </div>

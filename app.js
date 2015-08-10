@@ -100,29 +100,18 @@ function startApp() {
     });
 
     app.get('/api/names/all/:letter', function (req, res) {
-        console.log('retrieving names by letter');
-        console.log('request body ', req.params.letter);
-        //BabyName.find({ $where: "name.substring(0,1) === req.params.letter" }, function (err, result) {
-        //    if (err) console.log('BabyName fetch error: ', err);
-        //    //console.log('typeof res ', typeof result);
-        //    //console.log('result ', result);
-        //    res.send(result);
-        //});
+        console.log('retrieving names by letter ', req.params.letter);
+        var letter = req.params.letter;
+        var pattern = '^' + letter;
+        var regex = new RegExp(pattern);
 
-        //BabyName.find().where("name.substring(0,1)").equals(req.params.letter).select().exec(
-        //    function (err, result) {
-        //        if (err) console.log('BabyName fetch error: ', err);
-        //        console.log('typeof res ', typeof result);
-        //        console.log('result ', result);
-        //        res.send(result);
-        //});
-
-        BabyName.find({ $where: "this.name.substring(0,1) === 'req.params.letter'" }, function (err, result) {
+        BabyName.find({ name: { $regex: regex, $options: '' } }, function(err, result) {
+            //console.log('here is the name data by letter: ', result);
             if (err) console.log('BabyName fetch error: ', err);
-            //console.log('typeof res ', typeof result);
-            //console.log('result ', result);
+            //res.jsonp(item);
             res.send(result);
         });
+
     });
 
 

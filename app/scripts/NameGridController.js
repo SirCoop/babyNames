@@ -25,7 +25,7 @@ app.controller('NameGridController', ['$rootScope','$scope','NameFactory', 'cons
     $scope.nameGridOptions.onRegisterApi = function (gridApi) {
         $scope.gridApi = gridApi;
     };
-    console.log('$scope.gridApi ', $scope.gridApi);
+    //console.log('$scope.gridApi ', $scope.gridApi);
 
     //console.log('$scope.nameGridOptions.data.length ', $scope.nameGridOptions.data.length);
     $scope.totalNamesForCurrentYears = $scope.nameGridOptions.data.length;
