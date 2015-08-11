@@ -5,6 +5,9 @@
 
 app.controller('HomeController', ['$rootScope','$scope', '$state', 'NameFactory', 'constants', function ($rootScope, $scope, $state, NameFactory, constants) {
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     //console.log('data in home controller ', allNames);
 
@@ -16,8 +19,8 @@ app.controller('HomeController', ['$rootScope','$scope', '$state', 'NameFactory'
     $scope.nameSearch = '';
 
     $scope.searchName = function () {
-        console.log('submitted');
-        $state.go('app.search', {search: $scope.nameSearch});
+        console.log('submitted name: ', capitalizeFirstLetter($scope.nameSearch));
+        $state.go('app.search', {search: capitalizeFirstLetter($scope.nameSearch)});
     };
 
 }]);
