@@ -55,6 +55,19 @@ if (CONSTANTS.ENABLE.api) {
 //  ****Server Stuff****
 function startApp() {
 
+    function createQueryBody (queryParam) {
+        //var param = queryParam;
+        var pattern = '^' + queryParam;
+        var regex = new RegExp(pattern);
+        var queryOpts = {
+            name: {
+                $regex: regex,
+                $options: ''
+            }
+        }
+        return queryOpts;
+    }
+
 // log all requests to console
     app.use(morgan('dev'));
 
@@ -93,7 +106,6 @@ function startApp() {
         console.log('retrieving all names');
         BabyName.find({}, function (err, result) {
             if (err) console.log('BabyName fetch error: ', err);
-            //console.log('typeof res ', typeof result);
             //console.log('result ', result);
             res.send(result);
         });
@@ -101,11 +113,7 @@ function startApp() {
 
     app.get('/api/names/all/:letter', function (req, res) {
         console.log('retrieving names by letter ', req.params.letter);
-        var letter = req.params.letter;
-        var pattern = '^' + letter;
-        var regex = new RegExp(pattern);
-        BabyName.find({ name: { $regex: regex, $options: '' } }, function(err, result) {
-            //console.log('here is the name data by letter: ', result);
+        BabyName.find(createQueryBody(req.params.letter), function(err, result) {
             if (err) console.log('BabyName fetch error: ', err);
             //res.jsonp(item);
             res.send(result);
@@ -114,13 +122,8 @@ function startApp() {
 
     app.get('/api/names/search/:search', function (req, res) {
         console.log('retrieving names by search ', req.params.search);
-        var name = req.params.search;
-        var pattern = '^' + name;
-        var regex = new RegExp(pattern);
-        BabyName.find({ name: { $regex: regex, $options: '' } }, function(err, result) {
-            //console.log('here is the name data by letter: ', result);
+        BabyName.find(createQueryBody(req.params.search), function(err, result) {
             if (err) console.log('BabyName fetch error: ', err);
-            //res.jsonp(item);
             res.send(result);
         });
     });
