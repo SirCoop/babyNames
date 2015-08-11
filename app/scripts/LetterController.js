@@ -6,12 +6,14 @@
  */
 'use strict';
 
-app.controller('LetterController', ['$rootScope','$scope','NameFactory', 'constants', 'gridConfig', '$q', '$timeout', 'namesByLetter', function ($rootScope, $scope, NameFactory, constants, gridConfig, $q, $timeout, namesByLetter) {
+app.controller('LetterController', ['$rootScope','$scope','NameFactory', 'constants', 'gridConfig', '$q', '$timeout', 'namesByLetter', 'letter', function ($rootScope, $scope, NameFactory, constants, gridConfig, $q, $timeout, namesByLetter, letter) {
 
     console.log('letter controller active');
     $scope.totalNamesByLetter = namesByLetter.length;
 
     $scope.nameData = namesByLetter;
     console.log('names by letter ', $scope.nameData);
+
+    $scope.letter = letter;
 
 }]);

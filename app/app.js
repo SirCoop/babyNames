@@ -44,13 +44,6 @@ var app = angular.module('babyNames', [
                 templateUrl: '/views/tpls/home.html',
                 controller: 'HomeController',
                 resolve: {
-                    //nameData: function (NameFactory) {
-                    //    return NameFactory.getNames(constants.namesDirectory);
-                    //}
-
-                    //allNames: function (NameFactory) {
-                    //    return NameFactory.getNamesFromDB(constants.findAll);
-                    //}
                 }
             })
             .state('app.allNames', {
@@ -68,16 +61,25 @@ var app = angular.module('babyNames', [
                 templateUrl: '/views/tpls/letter.html',
                 controller: 'LetterController',
                 resolve: {
-                    //nameData: function (NameFactory) {
-                    //    return NameFactory.getNames(constants.namesDirectory);
-                    //}
                     namesByLetter: function (NameFactory, $stateParams) {
                         return NameFactory.getNamesByLetter(constants.getNamesByLetter, $stateParams.letter);
+                    },
+                    letter: function ($stateParams) {
+                        return $stateParams.letter;
                     }
-
-                    //namesStartingWith: function (NameFactory) {
-                    //    return NameFactory.namesStartingWith(constants.findAll);
-                    //}
+                }
+            })
+            .state('app.search', {
+                url: '/names/search/:search',
+                templateUrl: '/views/tpls/search.html',
+                controller: 'SearchController',
+                resolve: {
+                    getNamesBySearch: function (NameFactory, $stateParams) {
+                        return NameFactory.getNamesBySearch(constants.getNamesBySearch, $stateParams.search);
+                    },
+                    name: function ($stateParams) {
+                        return $stateParams.search;
+                    }
                 }
             });
 

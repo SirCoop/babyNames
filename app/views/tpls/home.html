@@ -5,9 +5,16 @@
     </div>
 </div>
 
+<hr>
+
 <div class="row ">
     <div class="col-xs-10 col-xs-offset-1">
-        <div><a ui-sref="app.allNames">View All Names</a></div>
+        <span class="col-xs-5"><a ui-sref="app.allNames">View All Names</a></span>
+        <span class="col-xs-5">
+            <form novalidate ng-submit="searchName()">
+                <input class="form-control" type="text" placeholder="Search name..." ng-model="nameSearch">
+            </form>
+        </span>
     </div>
 </div>
 

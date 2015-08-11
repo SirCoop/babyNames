@@ -26,6 +26,14 @@ app.factory('NameFactory', ['$http', '$rootScope', function ($http, $rootScope) 
                 console.log('received all names starting with ' + letter);
                 return res.data;
             });
+        },
+        getNamesBySearch: function (dir, name) {
+            console.log('retrieving name ', name);
+            console.log('dir + name = ', dir + name);
+            return $http.get(dir + name).then(function (res) {
+                console.log('returning name ', name);
+                return res.data;
+            });
         }
 
     }

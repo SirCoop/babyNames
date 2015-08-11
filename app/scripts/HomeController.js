@@ -3,7 +3,7 @@
  */
 'use strict';
 
-app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constants', function ($rootScope, $scope, NameFactory, constants) {
+app.controller('HomeController', ['$rootScope','$scope', '$state', 'NameFactory', 'constants', function ($rootScope, $scope, $state, NameFactory, constants) {
 
 
     //console.log('data in home controller ', allNames);
@@ -12,6 +12,13 @@ app.controller('HomeController', ['$rootScope','$scope','NameFactory', 'constant
     $scope.yearData = '';
 
     $scope.letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+    $scope.nameSearch = '';
+
+    $scope.searchName = function () {
+        console.log('submitted');
+        $state.go('app.search', {search: $scope.nameSearch});
+    };
 
 }]);
 

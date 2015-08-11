@@ -104,14 +104,25 @@ function startApp() {
         var letter = req.params.letter;
         var pattern = '^' + letter;
         var regex = new RegExp(pattern);
-
         BabyName.find({ name: { $regex: regex, $options: '' } }, function(err, result) {
             //console.log('here is the name data by letter: ', result);
             if (err) console.log('BabyName fetch error: ', err);
             //res.jsonp(item);
             res.send(result);
         });
+    });
 
+    app.get('/api/names/search/:search', function (req, res) {
+        console.log('retrieving names by search ', req.params.search);
+        var name = req.params.search;
+        var pattern = '^' + name;
+        var regex = new RegExp(pattern);
+        BabyName.find({ name: { $regex: regex, $options: '' } }, function(err, result) {
+            //console.log('here is the name data by letter: ', result);
+            if (err) console.log('BabyName fetch error: ', err);
+            //res.jsonp(item);
+            res.send(result);
+        });
     });
 
 
