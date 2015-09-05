@@ -21,7 +21,7 @@ var mongoose = require('mongoose');
 //  mongoose model - this gives me all the schema enforced CRUD operations for a BabyName model
 var BabyName = require(CONSTANTS.MODEL.BABYNAME);
 //  mongooose connection
-var db;
+var conn;
 
 
 //  backend service to concatenate baby name files into BabyNames.json
@@ -40,12 +40,31 @@ if (CONSTANTS.ENABLE.db_service && !turnOffDbService) {
 //  ****Open DB Connection - FOR LOCALHOST USE ONLY****
 if (CONSTANTS.ENABLE.api) {
     mongoose.connect(CONSTANTS.DB_URI);
-    db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'app.js mongo connection error: '));
-    db.once('open', function (callback) {
-        console.log('db opened from app.js:', db.name);
+    conn = mongoose.connection;
+    //console.log('db obj on startup: ', db);
+    conn.on('error', console.error.bind(console, 'app.js mongo connection error: '));
+    conn.once('open', function (callback) {
+        console.log('db opened from app.js:', conn.name);
+        conn.db.collectionNames(function (err, names) {
+            console.log(conn.name + ' collections are: ', names);
+            function filterObj (obj) {
+                return obj.name === 'babyNames.babynames';
+            }
+            //console.log('names.filter test', names.filter(filterObj));
+            if(!names.filter(filterObj).length) {
+                console.log('starting DB migration');
+                require(CONSTANTS.SERVICE.DB_SERVICE)();
+                console.log('DB Migration Finished');
+                //require(CONSTANTS.SERVICE.JSON_SERVICE)();
+
+                startApp();
+            } else {
+                startApp();
+            }
+
+        })
         console.log('app.js mongoose ready, in state: ', mongoose.connection.readyState);
-        startApp();
+
     });
 }
 
