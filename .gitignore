@@ -100,4 +100,4 @@ crashlytics-build.properties
 
 *.apk
 
-app/_resources
+#app/_resources
