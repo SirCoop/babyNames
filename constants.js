@@ -22,7 +22,7 @@ module.exports = function(opts) {
             api: 1
         },
         //DB_URI: 'mongodb://localhost/babyNames',
-        DB_URI: 'mongodb://heroku_kf281tmr:5bgp6hh5vgb0tk03npp12t62e8@ds035583.mongolab.com:35583/heroku_kf281tmr',
+        //DB_URI: 'mongodb://heroku_kf281tmr:5bgp6hh5vgb0tk03npp12t62e8@ds035583.mongolab.com:35583/heroku_kf281tmr',
         MODEL: {
             BABYNAME: path.join(__dirname, '/dbService/model/BabyName')
         }

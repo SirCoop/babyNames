@@ -39,7 +39,8 @@ if (CONSTANTS.ENABLE.db_service && !turnOffDbService) {
 
 //  ****Open DB Connection - FOR LOCALHOST USE ONLY****
 if (CONSTANTS.ENABLE.api) {
-    mongoose.connect(CONSTANTS.DB_URI);
+    //mongoose.connect(CONSTANTS.DB_URI);
+    mongoose.connect('mongodb://heroku_kf281tmr:5bgp6hh5vgb0tk03npp12t62e8@ds035583.mongolab.com:35583/heroku_kf281tmr');
     conn = mongoose.connection;
     //console.log('db obj on startup: ', db);
     conn.on('error', console.error.bind(console, 'app.js mongo connection error: '));
@@ -53,6 +54,7 @@ if (CONSTANTS.ENABLE.api) {
             //console.log('names.filter test', names.filter(filterObj));
             if(!names.filter(filterObj).length) {
                 console.log('starting DB migration');
+                require(CONSTANTS.SERVICE.JSON_SERVICE)();
                 require(CONSTANTS.SERVICE.DB_SERVICE)();
                 console.log('DB Migration Finished');
                 //require(CONSTANTS.SERVICE.JSON_SERVICE)();
