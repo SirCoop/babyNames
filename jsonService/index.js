@@ -59,9 +59,10 @@ function MakeJSON(opts) {
     console.log('DATA LOCATION: ', CONSTANTS.RESOURCEDATA);
     var dataLocation = CONSTANTS.RESOURCEDATA;
     var dataModel = '';
+    var fileNames;
     //  array of filenames to be synchronously executed upon
     try {
-        var fileNames = fs.readdirSync(dataLocation);
+        fileNames = fs.readdirSync(dataLocation);
     } catch (e) {
         console.log('error on fs.readdirSync: ', e);
     }
@@ -69,9 +70,10 @@ function MakeJSON(opts) {
     //  single file execution
     fileNames.forEach(function (file) {
         var nameObjArr = [];
+        var x
         //  read file contents, then split on newLineRegex
         try {
-            var x = fs.readFileSync(dataLocation + '\\' + file).toString().match(newLineRegex);
+            x = fs.readFileSync(dataLocation + '\\' + file).toString().match(newLineRegex);
         } catch (e) {
             console.log('error on fs.readFileSync: ', e);
         }
