@@ -10,7 +10,10 @@ module.exports = function(opts) {
         APPPARENT: __dirname + '/../',
         APPBASE: __dirname,
         PAGESJSON: path.join(__dirname, '/app/_resources/BabyNames.json'),
-        RESOURCEDATA: path.join(__dirname, '/app/namesByBirthYear'),
+        // for local
+        //RESOURCEDATA: path.join(__dirname, '/app/namesByBirthYear'),
+        //  for heroku
+        RESOURCEDATA: path.join(__dirname, '/namesByBirthYear'),
         SERVICE: {
             JSON_SERVICE: path.join(__dirname, '/jsonService/index'),
             DB_SERVICE: path.join(__dirname, '/dbService/index')
