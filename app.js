@@ -39,8 +39,24 @@ if (CONSTANTS.ENABLE.db_service && !turnOffDbService) {
 
 //  ****Open DB Connection - FOR LOCALHOST USE ONLY****
 if (CONSTANTS.ENABLE.api) {
+
+    console.log('process.env.MONGOLAB_URI: ', process.env.MONGOLAB_URI);
+
+    switch (process.env.NODE_ENV) {
+        case 'development':
+            mongoose.connect(CONSTANTS.DB_URI);
+            break;
+
+        case 'production':
+            mongoose.connect(process.env.MONGOLAB_URI);
+            break;
+
+        default:
+            mongoose.connect(CONSTANTS.DB_URI);
+    }
+
     //mongoose.connect(CONSTANTS.DB_URI);
-    mongoose.connect('mongodb://heroku_kf281tmr:5bgp6hh5vgb0tk03npp12t62e8@ds035583.mongolab.com:35583/heroku_kf281tmr');
+    //mongoose.connect('mongodb://heroku_kf281tmr:5bgp6hh5vgb0tk03npp12t62e8@ds035583.mongolab.com:35583/heroku_kf281tmr');
     conn = mongoose.connection;
     //console.log('db obj on startup: ', db);
     conn.on('error', console.error.bind(console, 'app.js mongo connection error: '));
