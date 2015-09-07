@@ -70,7 +70,12 @@ function MakeJSON(opts) {
     fileNames.forEach(function (file) {
         var nameObjArr = [];
         //  read file contents, then split on newLineRegex
-        var x = fs.readFileSync(dataLocation + '\\' + file).toString().match(newLineRegex);
+        try {
+            var x = fs.readFileSync(dataLocation + '\\' + file).toString().match(newLineRegex);
+        } catch (e) {
+            console.log('error on fs.readFileSync: ', e);
+        }
+
         //  set up final babyName obj to be written
         var babyNames = {
             //  .match(regex) splits the returned string into constituent name strings
