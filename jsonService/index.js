@@ -56,10 +56,16 @@ function MakeJSON(opts) {
     var pushToArr = function (item) {
         final.push(item);
     };
+    console.log('DATA LOCATION: ', CONSTANTS.RESOURCEDATA);
     var dataLocation = CONSTANTS.RESOURCEDATA;
     var dataModel = '';
     //  array of filenames to be synchronously executed upon
-    var fileNames = fs.readdirSync(dataLocation);
+    try {
+        var fileNames = fs.readdirSync(dataLocation);
+    } catch (e) {
+        console.log('error on fs.readdirSync: ', e);
+    }
+
     //  single file execution
     fileNames.forEach(function (file) {
         var nameObjArr = [];
