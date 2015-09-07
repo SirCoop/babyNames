@@ -66,7 +66,8 @@ function MakeJSON(opts) {
     var fileNames;
     //  array of filenames to be synchronously executed upon
     console.log('DATA LOCATION: ', dataLocation);
-    console.log('file exists? ', fs.lstatSync(dataLocation));
+    var dir = fs.lstatSync(dataLocation);
+    console.log('is directory? ', dir.isDirectory());
     try {
         fileNames = fs.readdirSync(dataLocation);
     } catch (e) {
