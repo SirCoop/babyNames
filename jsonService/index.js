@@ -44,6 +44,7 @@
 
 var fs = require('graceful-fs')
 var CONSTANTS = require('../constants')();
+var path = require('path');
 
 var JSONFactory = function(opts) {
     return new MakeJSON(opts)
