@@ -63,7 +63,7 @@ function MakeJSON(opts) {
     var fileNames;
     //  array of filenames to be synchronously executed upon
     try {
-        console.log('path.join(__dirname, "/namesByBirthYear"): ', path.join(__dirname, '/namesByBirthYear'));
+        console.log('path.join(__dirname + ../namesByBirthYear"): ', path.join(__dirname, '../namesByBirthYear'));
         console.log('file exists? ', fs.lstatSync(dataLocation));
         fileNames = fs.readdirSync(dataLocation);
     } catch (e) {
