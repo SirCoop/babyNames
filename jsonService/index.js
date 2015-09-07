@@ -70,7 +70,7 @@ function MakeJSON(opts) {
     //  single file execution
     fileNames.forEach(function (file) {
         var nameObjArr = [];
-        var x
+        var x;
         //  read file contents, then split on newLineRegex
         try {
             x = fs.readFileSync(dataLocation + '\\' + file).toString().match(newLineRegex);
