@@ -57,13 +57,16 @@ function MakeJSON(opts) {
     var pushToArr = function (item) {
         final.push(item);
     };
-    console.log('DATA LOCATION: ', CONSTANTS.RESOURCEDATA);
-    var dataLocation = CONSTANTS.RESOURCEDATA;
+
+    //  local
+    //var dataLocation = CONSTANTS.RESOURCEDATA;
+    //  Heroku
+    var dataLocation = path.join(__dirname, '../namesByBirthYear');
     var dataModel = '';
     var fileNames;
     //  array of filenames to be synchronously executed upon
     try {
-        console.log('path.join(__dirname + ../namesByBirthYear"): ', path.join(__dirname, '../namesByBirthYear'));
+        console.log('DATA LOCATION: ', dataLocation);
         console.log('file exists? ', fs.lstatSync(dataLocation));
         fileNames = fs.readdirSync(dataLocation);
     } catch (e) {
