@@ -15,7 +15,7 @@ var bodyParser = require('body-parser');
 //  used to log requests to console
 var morgan = require('morgan');
 //  set web server port for this app
-var port = process.env.PORT || 1213;
+var port = process.env.PORT || 1214;
 //  object data modeling: mongoDb <---> JS objects
 var mongoose = require('mongoose');
 //  mongoose model - this gives me all the schema enforced CRUD operations for a BabyName model
@@ -25,6 +25,7 @@ var conn;
 
 
 //  backend service to concatenate baby name files into BabyNames.json
+//  if enabled, set ENABLE.api = 0 & vice versa
 if (CONSTANTS.ENABLE.json_service) {
     //require(path.join(__dirname, '/jsonService/index.js'))();
     require(CONSTANTS.SERVICE.JSON_SERVICE)();
@@ -38,24 +39,10 @@ if (CONSTANTS.ENABLE.db_service && !turnOffDbService) {
 }
 
 //  ****Open DB Connection - FOR LOCALHOST USE ONLY****
+//  if enabled, set ENABLE.json_service and db_service = 0 & vice versa
 if (CONSTANTS.ENABLE.api) {
 
-    console.log('process.env.MONGOLAB_URI: ', process.env.MONGOLAB_URI);
-
-    switch (process.env.NODE_ENV) {
-        case 'development':
-            mongoose.connect(CONSTANTS.DB_URI);
-            break;
-
-        case 'production':
-            mongoose.connect(process.env.MONGOLAB_URI);
-            break;
-
-        default:
-            mongoose.connect(CONSTANTS.DB_URI);
-    }
-
-    //mongoose.connect(CONSTANTS.DB_URI);
+    mongoose.connect(CONSTANTS.DB_URI);
     //mongoose.connect('mongodb://heroku_kf281tmr:5bgp6hh5vgb0tk03npp12t62e8@ds035583.mongolab.com:35583/heroku_kf281tmr');
     conn = mongoose.connection;
     //console.log('db obj on startup: ', db);
@@ -112,9 +99,6 @@ function startApp() {
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
 
-//  start server
-// process.env.PORT || 4711 just in case port environment variable is set on deployment e.g.Heroku
-    var port = process.env.PORT || 1213;
 // start server
     app.listen(port, function () {
         console.log('Express server listening on port %d in %s mode', port, app.settings.env);
