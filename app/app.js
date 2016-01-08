@@ -13,10 +13,12 @@ var app = angular.module('babyNames', [
     'ui.grid.pagination',
     'ui.grid.infiniteScroll'
 ])
-.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', 'constants', function ($stateProvider, $httpProvider, $urlRouterProvider, constants) {
+.config(['$locationProvider', '$stateProvider', '$httpProvider', '$urlRouterProvider', 'constants', function ($locationProvider, $stateProvider, $httpProvider, $urlRouterProvider, constants) {
     'use strict';
 
         var previousPath;
+
+        $locationProvider.html5Mode(true);
 
         //  to catch unmatched urls
         $urlRouterProvider.otherwise('/home');

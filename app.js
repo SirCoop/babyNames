@@ -101,7 +101,7 @@ function startApp() {
 
 // start server
     app.listen(port, function () {
-        console.log('Express server listening on port %d in %s mode', port, app.settings.env);
+        //console.log('Express server listening on port %d in %s mode', port, app.settings.env);
     });
 
 //  let's create another instance of an express router to handle api routing
