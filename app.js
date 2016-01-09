@@ -119,7 +119,7 @@ function startApp() {
 //  mount our api router onto the original express app router at path /api
     app.use('/api', api);
 
-    app.get('/api/names/all', function (req, res) {
+    api.get('/names/all', function (req, res) {
         console.log('retrieving all names');
         BabyName.find({}, function (err, result) {
             if (err) console.log('BabyName fetch error: ', err);
@@ -128,7 +128,7 @@ function startApp() {
         });
     });
 
-    app.get('/api/names/all/:letter', function (req, res) {
+    api.get('/names/all/:letter', function (req, res) {
         console.log('retrieving names by letter ', req.params.letter);
         BabyName.find(createQueryBody(req.params.letter), function(err, result) {
             if (err) console.log('BabyName fetch error: ', err);
@@ -137,7 +137,7 @@ function startApp() {
         });
     });
 
-    app.get('/api/names/search/:search', function (req, res) {
+    api.get('/names/search/:search', function (req, res) {
         console.log('retrieving names by search ', req.params.search);
         BabyName.find(createQueryBody(req.params.search), function(err, result) {
             if (err) console.log('BabyName fetch error: ', err);

@@ -18,20 +18,20 @@ var app = angular.module('babyNames', [
 
         var previousPath;
 
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
 
         //  to catch unmatched urls
         $urlRouterProvider.otherwise('/home');
-        $urlRouterProvider.rule(function ($injector, $location) {
-            previousPath = $location.path();
-
-            if ($location.path().match(/^\/404$/)) {
-                var data = $injector.get('$state').get('index').data;
-                data.error = 404;
-                data.errorUrl = previousPath;
-                $location.replace().path('/error');
-            }
-        });
+        //$urlRouterProvider.rule(function ($injector, $location) {
+        //    previousPath = $location.path();
+        //
+        //    if ($location.path().match(/^\/404$/)) {
+        //        var data = $injector.get('$state').get('index').data;
+        //        data.error = 404;
+        //        data.errorUrl = previousPath;
+        //        $location.replace().path('/error');
+        //    }
+        //});
 
         $stateProvider
             .state('app', {
